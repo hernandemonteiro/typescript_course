@@ -7,7 +7,7 @@ export class MessageView extends View<string> {
     }
 
     clearMessage() {
-        setTimeout(() => { this.element.innerHTML = "" }, 20000);
+        setTimeout(() => { this.element.innerHTML = "" }, 2000);
     }
 
 }
