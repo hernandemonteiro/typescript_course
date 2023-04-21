@@ -29,14 +29,14 @@ export class NegociacaoController {
     }
 
     criaNegociacao(): Negociacao {
-        const date = this.formatDataForDateObject(this.inputData.value);
+        const date = this.formatDateForDateObject(this.inputData.value);
         const quantidade = parseInt(this.inputQuantidade.value);
         const valor = parseFloat(this.inputValor.value);
 
         return new Negociacao(date, quantidade, valor);
     }
 
-    formatDataForDateObject(data: string): Date {
+    formatDateForDateObject(data: string): Date {
         const exp = /-/g;
 
         return new Date(data.replace(exp, ","));
