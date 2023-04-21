@@ -21,12 +21,12 @@ export class NegociacaoController {
         this.messageView.clearMessage();
     }
     criaNegociacao() {
-        const date = this.formatData(this.inputData.value);
+        const date = this.formatDataForDateObject(this.inputData.value);
         const quantidade = parseInt(this.inputQuantidade.value);
         const valor = parseFloat(this.inputValor.value);
         return new Negociacao(date, quantidade, valor);
     }
-    formatData(data) {
+    formatDataForDateObject(data) {
         const exp = /-/g;
         return new Date(data.replace(exp, ","));
     }
