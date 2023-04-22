@@ -1,3 +1,5 @@
+import { DateFormat } from "../utils/dateFormater";
+
 export class Negociacao {
   constructor(
     private readonly _data: Date,
@@ -19,8 +21,7 @@ export class Negociacao {
     quantidadeString: string,
     valorString: string
   ): Negociacao {
-    const exp = /-/g;
-    const date = new Date(dateString.replace(exp, ","));
+    const date = DateFormat.toDateObject(dateString);
     const quantidade = parseInt(quantidadeString);
     const valor = parseFloat(valorString);
 
