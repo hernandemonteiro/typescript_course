@@ -1,10 +1,15 @@
 export abstract class View<T> {
-  protected element: HTMLElement | null;
+  protected element: HTMLElement;
   private _escape: boolean = false;
 
   constructor(selector: string, _escape?: boolean) {
-    this.element = document.querySelector(selector);
-    if (_escape) this._escape = _escape;
+    const element = document.querySelector(selector);
+    if (element) {
+      this.element = element as HTMLElement;
+    } else {
+      throw Error(`Seletor ${selector} não existe no DOM.`);
+    }
+    _escape && this.changeEscapeForTrue();
   }
 
   protected abstract template(model: T): string;
@@ -15,6 +20,10 @@ export abstract class View<T> {
     if (this._escape)
       template = template.replace(/<script>[\s\S]*?<\/script>/, "");
 
-    this.element ? this.element.innerHTML = template : null;
+    this.element.innerHTML = template;
+  }
+
+  private changeEscapeForTrue(): void {
+    this._escape = true;
   }
 }
