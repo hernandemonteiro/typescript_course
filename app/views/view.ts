@@ -1,5 +1,5 @@
 export abstract class View<T> {
-  protected element: HTMLElement;
+  protected element: HTMLElement | null;
   private _escape: boolean = false;
 
   constructor(selector: string, _escape?: boolean) {
@@ -15,6 +15,6 @@ export abstract class View<T> {
     if (this._escape)
       template = template.replace(/<script>[\s\S]*?<\/script>/, "");
 
-    this.element.innerHTML = template;
+    this.element ? this.element.innerHTML = template : null;
   }
 }

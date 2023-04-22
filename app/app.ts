@@ -4,8 +4,12 @@ const controller = new NegociacaoController();
 
 const form = document.querySelector(".form");
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
+form
+  ? form.addEventListener("submit", (event) => {
+      event.preventDefault();
 
-  controller.adiciona();
-});
+      controller.adiciona();
+    })
+  : console.error(
+      "Não foi possível inicializar a aplicação. Verifique se o form existe."
+    );
