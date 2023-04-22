@@ -4,6 +4,8 @@ export class MessageView extends View {
         return `<p class="alert alert-info">${model}</p>`;
     }
     clearMessage() {
-        setTimeout(() => { this.element.innerHTML = ""; }, 3000);
+        setTimeout(() => {
+            this.element ? (this.element.innerHTML = "") : null;
+        }, 3000);
     }
 }
