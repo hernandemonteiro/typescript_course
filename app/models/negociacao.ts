@@ -1,4 +1,4 @@
-import { DateFormat } from "../utils/dateFormater";
+import { DateFormat } from "../utils/dateFormater.js";
 
 export class Negociacao {
   constructor(

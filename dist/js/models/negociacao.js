@@ -1,3 +1,4 @@
+import { DateFormat } from "../utils/dateFormater.js";
 export class Negociacao {
     constructor(_data, quantidade, valor) {
         this._data = _data;
@@ -10,5 +11,11 @@ export class Negociacao {
     }
     get volume() {
         return this.quantidade * this.valor;
+    }
+    static createNegotiation(dateString, quantidadeString, valorString) {
+        const date = DateFormat.toDateObject(dateString);
+        const quantidade = parseInt(quantidadeString);
+        const valor = parseFloat(valorString);
+        return new Negociacao(date, quantidade, valor);
     }
 }
