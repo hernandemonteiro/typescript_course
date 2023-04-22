@@ -1,4 +1,4 @@
-import { WeekDay } from "../enums/weekDays.js";
+import { WeekDay } from "../utils/weekDays.enums.js";
 import { Negociacao } from "../models/negociacao.js";
 import { Negociacoes } from "../models/negociacoes.js";
 import { MessageView } from "../views/message-view.js";
@@ -20,7 +20,11 @@ export class NegociacaoController {
   }
 
   public adiciona(): void {
-    const negociacao = this.criaNegociacao();
+    const negociacao = Negociacao.createNegotiation(
+      this.inputData.value,
+      this.inputQuantidade.value,
+      this.inputValor.value
+    );
 
     if (!this.ehDiaUtil(negociacao.data)) {
       this.updateView("Apenas negociaçães em dias ímpares são aceitas!");
@@ -30,20 +34,6 @@ export class NegociacaoController {
     this.negociacoes.adiciona(negociacao);
     this.limparFormulario();
     this.updateView("Negociação adicionada com sucesso!");
-  }
-
-  private criaNegociacao(): Negociacao {
-    const date = this.formatDateForDateObject(this.inputData.value);
-    const quantidade = parseInt(this.inputQuantidade.value);
-    const valor = parseFloat(this.inputValor.value);
-
-    return new Negociacao(date, quantidade, valor);
-  }
-
-  private formatDateForDateObject(data: string): Date {
-    const exp = /-/g;
-
-    return new Date(data.replace(exp, ","));
   }
 
   private limparFormulario(): void {
