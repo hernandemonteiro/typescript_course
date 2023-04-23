@@ -1,3 +1,5 @@
+import { logOfExecutionTime } from "../patterns/execution-time-decorator.js";
+
 export abstract class View<T> {
   protected element: HTMLElement;
   private _escape: boolean = false;
@@ -14,6 +16,7 @@ export abstract class View<T> {
 
   protected abstract template(model: T): string;
 
+  @logOfExecutionTime(true)
   public update(model: T): void {
     let template = this.template(model);
 

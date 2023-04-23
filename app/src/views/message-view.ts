@@ -1,3 +1,4 @@
+import { logOfExecutionTime } from "../patterns/execution-time-decorator.js";
 import { View } from "./view.js";
 
 export class MessageView extends View<string> {
